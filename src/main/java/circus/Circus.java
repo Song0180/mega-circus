@@ -1,11 +1,12 @@
 package circus;
 
-import circus.animal.Animal;
-import circus.animal.Duck;
-import circus.animal.Parrot;
+import circus.animal.*;
 import circus.stuff.Cannon;
 import circus.stuff.Equipment;
 import circus.stuff.Ladder;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Circus {
     private static Animal[] animals = {
@@ -39,8 +40,32 @@ public class Circus {
     }
 
     public static void main(String[] args) {
-        makeAnimalsTalk();
-        System.out.println("Total value of animals " + calculateAssetValue(animals));
-        System.out.println("Total value of equipments " + calculateAssetValue(equipments));
+//        makeAnimalsTalk();
+//        System.out.println("Total value of animals " + calculateAssetValue(animals));
+//        System.out.println("Total value of equipments " + calculateAssetValue(equipments));
+        System.out.println("Number of animals: " + animals.length);
+//        animals[2] = new Tiger("Sherkhan");
+//        makeAnimalsTalk();
+//        System.out.println("Number of animals: " + animals.length);
+
+        ArrayList<Animal> animalArrayList = new ArrayList<>(Arrays.asList(animals));
+        System.out.println("Number of animals: " + animalArrayList.size());
+        animalArrayList.add(new Tiger("Shelkhan"));
+        System.out.println("Number of animals: " + animalArrayList.size());
+        Duck louie = new Duck("Louie");
+        animalArrayList.add(louie);
+        animalArrayList.add(new Elephant("StrongOne"));
+        printAllAnimals(animalArrayList);
+        System.out.println("The position of Louie is at: " + animalArrayList.indexOf(louie));
+        animalArrayList.sort(Animal.AnimalNameComparator);
+        printAllAnimals(animalArrayList);
+        System.out.println("The position of Louie is at (after sort): " + animalArrayList.indexOf(louie));
+        System.out.println(Arrays.toString(animals));
+    }
+
+    private static void printAllAnimals(ArrayList<Animal> animalArrayList) {
+        for (Animal a : animalArrayList) {
+            System.out.println(a);
+        }
     }
 }
